@@ -1,0 +1,61 @@
+{
+  "context": "Tests whether the agent produces a well-formed conventional commit message with correct type selection (feat/fix over refactor), proper subject line formatting, and a body that explains why rather than restating what the diff shows.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Correct type priority",
+      "max_score": 12,
+      "description": "Uses 'fix' (not 'refactor') as the type, since the primary change is a bug fix even though some helper code was also restructured"
+    },
+    {
+      "name": "Imperative subject verb",
+      "max_score": 10,
+      "description": "The subject line verb is imperative present tense (e.g. 'extend', 'fix', 'align') — NOT past tense ('fixed', 'extended') or third-person ('fixes', 'extends')"
+    },
+    {
+      "name": "Subject length",
+      "max_score": 8,
+      "description": "Subject line (after the type prefix) is 72 characters or fewer in total"
+    },
+    {
+      "name": "No trailing period",
+      "max_score": 8,
+      "description": "Subject line does NOT end with a period"
+    },
+    {
+      "name": "Lowercase subject",
+      "max_score": 8,
+      "description": "The first word of the subject description (after the colon and space) is lowercase, unless it is a proper noun"
+    },
+    {
+      "name": "No file paths in subject",
+      "max_score": 8,
+      "description": "The subject line does NOT contain a file path (e.g. 'src/auth/jwt.js' or similar)"
+    },
+    {
+      "name": "Body explains why",
+      "max_score": 12,
+      "description": "The body contains an explanation of why the change was needed (e.g. the mismatch between JWT TTL and session TTL causing user logouts), not just a description of what the code now does"
+    },
+    {
+      "name": "Body does not restate diff",
+      "max_score": 12,
+      "description": "The body does NOT simply list code-level changes that are already visible in the diff (e.g. does not say 'changed JWT_TTL to SESSION_TTL' or 'removed try/catch')"
+    },
+    {
+      "name": "Body line wrap",
+      "max_score": 8,
+      "description": "Every line in the body is 72 characters or fewer"
+    },
+    {
+      "name": "Blank line separation",
+      "max_score": 7,
+      "description": "There is a blank line between the subject and the body (if a body is present)"
+    },
+    {
+      "name": "No vague subject",
+      "max_score": 7,
+      "description": "The subject does NOT contain any of the banned phrases: 'misc fixes', 'updates', 'changes', 'wip'"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "context": "Tests whether the agent recognises that a diff contains unrelated changes and either suggests splitting or flags it, and whether the agent correctly adds a BREAKING CHANGE footer when the diff introduces a backward-incompatible change that the user has not explicitly acknowledged.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Splitting suggestion",
+      "max_score": 15,
+      "description": "The agent either (a) asks whether the diff should be split into two commits before writing a message, OR (b) explicitly notes that the diff contains unrelated changes and recommends splitting"
+    },
+    {
+      "name": "BREAKING CHANGE footer",
+      "max_score": 15,
+      "description": "If the agent writes a commit message (even as an example), the message for the API rename change includes a footer line starting exactly with 'BREAKING CHANGE:'"
+    },
+    {
+      "name": "BREAKING CHANGE description",
+      "max_score": 10,
+      "description": "The BREAKING CHANGE footer line includes a description of what broke (e.g. references the renamed field 'username' → 'handle' and that API consumers must update)"
+    },
+    {
+      "name": "Correct type for API change",
+      "max_score": 10,
+      "description": "The type used for the API field rename commit (if written) is NOT 'refactor' — it is 'feat' or 'fix'"
+    },
+    {
+      "name": "Scope used for API change",
+      "max_score": 8,
+      "description": "The commit for the API change includes a scope (e.g. 'api', 'users', or similar) that narrows the affected area"
+    },
+    {
+      "name": "Docs change has separate type",
+      "max_score": 8,
+      "description": "If the agent writes a second commit message for the documentation typo fix, it uses 'docs' as the type (not 'fix', 'chore', or another type)"
+    },
+    {
+      "name": "Imperative subject verb",
+      "max_score": 8,
+      "description": "All subject lines written by the agent use imperative present tense verbs (e.g. 'rename', 'fix') — NOT past tense or third-person"
+    },
+    {
+      "name": "Subject length",
+      "max_score": 7,
+      "description": "All subject lines written by the agent are 72 characters or fewer in total"
+    },
+    {
+      "name": "No trailing period",
+      "max_score": 7,
+      "description": "No subject line written by the agent ends with a period"
+    },
+    {
+      "name": "No file paths in subject",
+      "max_score": 7,
+      "description": "No subject line contains a file path (e.g. 'src/api/users.js')"
+    },
+    {
+      "name": "No vague subjects",
+      "max_score": 5,
+      "description": "No subject line contains any of: 'misc fixes', 'updates', 'changes', 'wip'"
+    }
+  ]
+}
