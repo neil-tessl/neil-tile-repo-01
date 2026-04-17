@@ -1,0 +1,11 @@
+{
+  "name": "neilhanekom/write-conventional-commit-message",
+  "version": "0.1.0",
+  "summary": "Write clean conventional-commit messages from a diff or staged changes.",
+  "private": true,
+  "skills": {
+    "write-conventional-commit-message": {
+      "path": "skills/write-conventional-commit-message/SKILL.md"
+    }
+  }
+}
